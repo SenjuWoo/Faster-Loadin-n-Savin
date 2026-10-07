@@ -13,9 +13,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/ShugokiFable/Faster-Loadin-n-Savin/actions/workflows/ci.yml"><img src="https://github.com/ShugokiFable/Faster-Loadin-n-Savin/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/SenjuWoo/Faster-Loadin-n-Savin/actions/workflows/ci.yml"><img src="https://github.com/SenjuWoo/Faster-Loadin-n-Savin/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-0BSD-5eead4?labelColor=0d0f11" alt="0BSD License"></a>
-  <a href="https://github.com/ShugokiFable/Faster-Loadin-n-Savin/releases/tag/v1.7.0"><img src="https://img.shields.io/badge/release-v1.7.0-5eead4?labelColor=0d0f11" alt="v1.7.0"></a>
+  <a href="https://github.com/SenjuWoo/Faster-Loadin-n-Savin/releases/tag/v1.7.0"><img src="https://img.shields.io/badge/release-v1.7.0-5eead4?labelColor=0d0f11" alt="v1.7.0"></a>
   <img src="https://img.shields.io/badge/D-LDC%20betterC-8f9aa6?labelColor=0d0f11" alt="D LDC betterC">
 </p>
 
@@ -63,7 +63,7 @@ No save cleaning or conversion is required when installing, updating, or uninsta
 
 ## Install
 
-Install the archive with Mod Organizer 2, Vortex, or another FOMOD-capable manager. Current release: [v1.7.0](https://github.com/ShugokiFable/Faster-Loadin-n-Savin/releases/tag/v1.7.0).
+Install the archive with Mod Organizer 2, Vortex, or another FOMOD-capable manager. Current release: [v1.7.0](https://github.com/SenjuWoo/Faster-Loadin-n-Savin/releases/tag/v1.7.0).
 
 1. Select the detected Skyrim runtime.
 2. Keep **Universal (Recommended)** unless you deliberately want High-End.
@@ -157,7 +157,7 @@ Not claimed:
 **Save and Load Accelerator for SKSE Cosaves** was created by **Harry Gillanders (`just-harry`)**.
 
 - Upstream: https://github.com/just-harry/save-load-accelerator-for-skse-cosaves
-- This fork: https://github.com/ShugokiFable/Faster-Loadin-n-Savin
+- This fork: https://github.com/SenjuWoo/Faster-Loadin-n-Savin
 
 See [`CREDITS.md`](CREDITS.md) and [`LICENSE`](LICENSE). 0BSD permits use, copying, modification, and redistribution with or without fee. Nexus permissions should mirror those terms.
 

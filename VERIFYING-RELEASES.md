@@ -51,5 +51,5 @@ The packager builds both CPU profiles for all eight supported game versions, val
 ## Source provenance
 
 - Original upstream: https://github.com/just-harry/save-load-accelerator-for-skse-cosaves
-- Maintenance fork: https://github.com/ShugokiFable/Faster-Loadin-n-Savin
+- Maintenance fork: https://github.com/SenjuWoo/Faster-Loadin-n-Savin
 - License: 0BSD
