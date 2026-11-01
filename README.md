@@ -15,7 +15,7 @@
 <p align="center">
   <a href="https://github.com/SenjuWoo/Faster-Loadin-n-Savin/actions/workflows/ci.yml"><img src="https://github.com/SenjuWoo/Faster-Loadin-n-Savin/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-0BSD-5eead4?labelColor=0d0f11" alt="0BSD License"></a>
-  <a href="https://github.com/SenjuWoo/Faster-Loadin-n-Savin/releases/tag/v1.7.0"><img src="https://img.shields.io/badge/release-v1.7.0-5eead4?labelColor=0d0f11" alt="v1.7.0"></a>
+  <a href="https://github.com/SenjuWoo/Faster-Loadin-n-Savin/releases/latest"><img src="https://img.shields.io/github/v/release/SenjuWoo/Faster-Loadin-n-Savin?label=release&color=5eead4" alt="latest release"></a>
   <img src="https://img.shields.io/badge/D-LDC%20betterC-8f9aa6?labelColor=0d0f11" alt="D LDC betterC">
 </p>
 
