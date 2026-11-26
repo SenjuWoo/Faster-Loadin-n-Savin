@@ -10,6 +10,6 @@ Set the public permissions so users may:
 - publish bug fixes and maintenance forks;
 - earn donation points from their own substantial derivative work if Nexus requires a choice.
 
-Credit **Harry Gillanders (`just-harry`)** as the original author of **Save and Load Accelerator for SKSE Cosaves** and link the upstream repository. Credit **ShugokiFable** only for the maintenance-fork modifications.
+Credit **Harry Gillanders (`just-harry`)** as the original author of **Save and Load Accelerator for SKSE Cosaves** and link the upstream repository. Credit **SenjuWoo** only for the maintenance-fork modifications.
 
 Do not claim exclusive ownership of the original code, and do not require case-by-case permission for rights already granted by 0BSD.

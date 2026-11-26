@@ -1,5 +1,9 @@
 # Faster Loadin and Savin: Changelog
 
+## Unreleased
+
+- Maintainer credit reads `SenjuWoo` (the account's current name) in `CREDITS.md`, `NEXUS-PERMISSIONS.md`, the Nexus description and the FOMOD `info.xml` Author. The 1.7.1 archive still shows the previous name in its installer; the next release carries the new one.
+
 ## Version 1.7.1 (2026-11-25)
 
 Metadata fix. No save/load behaviour change from 1.7.0, and no cosave format change.
@@ -7,6 +11,8 @@ Metadata fix. No save/load behaviour change from 1.7.0, and no cosave format cha
 - **Fixed: the DLL version resource carried a stray `\0`.** The 1.7.0 DLLs report their `FileVersion` and `ProductVersion` strings as the literal text `1.7.0.0\0` (Windows file properties and `tools/verify-release-binaries.py manifest` show it). The version-stamping script wrote `\\0` into the `.rc` file, so `rc.exe` kept a backslash and a zero instead of the string terminator. The script now writes `\0`, and the 1.7.1 DLLs report plain `1.7.1.0`. The numeric `FILEVERSION`, `SKSEPlugin_Version` and `GetReleaseVersion` values were always correct.
 - **Fixed: the build's debug path prefix read `vv1.7.0`.** The same script doubled the `v` in `build.ps1`'s release tag, which only feeds the debug-info source path prefix (not shipped in the DLLs).
 - Version 1.7.1 everywhere: DLL resources, `SKSEPlugin_Version`, error-dialog title, FOMOD, packager default.
+- The FOMOD `info.xml` Website now points at `github.com/SenjuWoo/Faster-Loadin-n-Savin` (the 1.7.0 archive still named the old account).
+- Checked against 1.7.0 with `tools/verify-release-binaries.py compare`: in each of the 18 DLLs the only `.text` change is the one-byte `GetReleaseVersion` constant; see `VERIFYING-RELEASES.md`.
 - Repository: the README follows the fork's other project pages (cover image, release proof, install and build sections); the old maintainer account links point at `SenjuWoo`; the Nexus description and install notes are current for 1.7.x (nine game variants, SKSE's builtin preloader on 1.6.1170 and 1.7.99).
 
 ## Version 1.7.0 (2026-08-23)

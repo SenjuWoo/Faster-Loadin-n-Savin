@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <fomod>
     <Name>Faster Loadin and Savin</Name>
-    <Author>ShugokiFable; original plugin by Harry Gillanders (just-harry)</Author>
+    <Author>SenjuWoo; original plugin by Harry Gillanders (just-harry)</Author>
     <Version MachineVersion="1.7.1">1.7.1</Version>
     <Description>A 0BSD maintenance fork of Save and Load Accelerator for SKSE Cosaves, with atomic cosave replacement, buffered loading, and hardened release packaging.</Description>
     <Website>https://github.com/SenjuWoo/Faster-Loadin-n-Savin</Website>

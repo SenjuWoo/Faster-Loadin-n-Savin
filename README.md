@@ -148,7 +148,7 @@ PDB-bearing legacy packages.
 flowchart LR
   SAVE["Skyrim saves"] --> SKSE["SKSE cosave routines<br/>(patched at runtime)"]
   SKSE --> CB["Plugin callbacks write into<br/>a large in-memory buffer"]
-  CB --> TMP["One write to name.skse.tmp"]
+  CB --> TMP["Write to name.skse.tmp"]
   TMP -->|"closed, complete"| MOVE["MoveFileExA:<br/>replace + write-through"]
   MOVE --> COSAVE[("name.skse")]
   COSAVE -->|"load: buffered,<br/>exact-length read"| LOAD["Plugin load callbacks"]

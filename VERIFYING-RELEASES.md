@@ -14,9 +14,13 @@ python tools/verify-release-binaries.py compare <1.7.0.dll> <1.7.1.dll>
 ```
 
 reports 360 differing bytes: 29 in `.rdata` (version strings, error-dialog title), 321 in `.rsrc` (version resource), 1 in
-`.text`, 3 in `OptionalHeader.CheckSum` and 6 in header padding. The single `.text` byte matches the release-version
-constant `0x01_07_001_0` returned by `GetReleaseVersion`. Because `.text` differs, the tool prints "EXECUTABLE CODE
-DIFFERS"; that is the expected result for a version bump of this code base.
+`.text`, 3 in `OptionalHeader.CheckSum` and 6 in header padding. The single `.text` byte is the immediate of
+`GetReleaseVersion`'s `mov eax, imm32; ret` (`b8 00 00 07 01 c3` in 1.7.0, `b8 10 00 07 01 c3` in 1.7.1, that is
+`0x01070000` to `0x01070010`). Because `.text` differs, the tool prints "EXECUTABLE CODE DIFFERS"; that is the
+expected result for a version bump of this code base.
+
+All 18 DLL pairs (nine game builds, Universal and High-End) show the same picture: exactly one differing `.text` byte
+each. The 18 INI files are byte-identical, and in `fomod/` only `info.xml` differs (the version and the Website link).
 
 ## What 1.5.1 is
 

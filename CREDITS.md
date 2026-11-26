@@ -9,7 +9,7 @@
 
 ## Maintenance fork
 
-**Faster Loadin and Savin** is maintained by **ShugokiFable**.
+**Faster Loadin and Savin** is maintained by **SenjuWoo**.
 
 - Fork source: https://github.com/SenjuWoo/Faster-Loadin-n-Savin
 - Fork modifications copyright: Copyright (C) 2026 ShugokiFable
