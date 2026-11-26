@@ -6,15 +6,12 @@ This is a maintenance fork of [url=https://github.com/just-harry/save-load-accel
 
 Fork source: [url=https://github.com/SenjuWoo/Faster-Loadin-n-Savin]https://github.com/SenjuWoo/Faster-Loadin-n-Savin[/url][/quote]
 
-[size=4][b][u]What is new in 1.5.1[/u][/b][/size]
+[size=4][b][u]What is new in 1.7.x[/u][/b][/size]
 [list]
-[*][b]Real CPU selection in the FOMOD.[/b] Universal x86-64-v2 is recommended. High-End x86-64-v3 is an optional AVX2-class build and overlays only the selected game version.
-[*][b]Sanitized build metadata.[/b] User-specific absolute PDB paths are no longer exposed in the public DLLs.
-[*][b]Reproducible release packaging.[/b] The release script now matches the public archive layout, validates all eight game targets and both CPU profiles, rejects development artifacts, and generates hashes and a DLL manifest.
-[*][b]Clearer safety language.[/b] Atomic replacement reduces the risk of a truncated or destroyed SKSE cosave, but it is not an atomic transaction with Skyrim's main .ess file.
-[*][b]Clearer verification language.[/b] Static import inspection is useful evidence, not absolute proof of every capability a native binary could exercise.
-[*][b]Explicit credits and permissions guidance.[/b] The repository and Nexus permissions are intended to remain consistent with 0BSD.
-[*][b]No save/load behavior change from 1.4.0 or 1.5.0.[/b] The 1.5.1 DLLs contain the same executable code and are restamped with corrected release metadata.
+[*][b]1.7.1: clean version resource.[/b] The 1.7.0 DLLs showed their file version as the text "1.7.0.0\0" in Windows file properties; 1.7.1 reports plain 1.7.1.0. No save/load behaviour change.
+[*][b]1.7.0: rebased on upstream S.L.A.C.K. 1.3.4.[/b] With SKSE 2.2.6 on 1.6.1170 the plugin now loads far enough to show a friendly version-mismatch dialog with a download link instead of failing silently. SKSE 2.2.8 or newer is still required to run on 1.6.1170.
+[*][b]1.6.0: rebased on upstream 1.3.3.[/b] Skyrim AE 1.7.99 (SKSE 2.3.0) is supported, and the 1.6.1170 and 1.7.99 builds use SKSE's builtin preloader, so SSE Engine Fixes' preloader is no longer needed there.
+[*][b]Kept from the fork:[/b] atomic crash-safe cosave writes, buffered exact-length cosave reads, the Universal x86-64-v2 default with an optional High-End x86-64-v3 build, and release archives with a DLL manifest and SHA-256 sidecar.
 [/list]
 
 [size=4][b][u]What the plugin does[/u][/b][/size]
@@ -40,7 +37,8 @@ The plugin does not change the cosave format. No save cleaning or new game is re
 [size=4][b][u]Requirements[/u][/b][/size]
 [list]
 [*][url=https://skse.silverlock.org/]SKSE[/url] or SKSEVR matching your game runtime.
-[*]A compatible DLL preloader, such as the preloader supplied with SSE Engine Fixes or DLL Plugin Loader.
+[*]Skyrim AE 1.6.1170 needs SKSE 2.2.8 or newer; Skyrim AE 1.7.99 needs SKSE 2.3.0. These two builds use SKSE's builtin preloader.
+[*]Every other game version needs a compatible DLL preloader, such as the preloader supplied with SSE Engine Fixes or DLL Plugin Loader.
 [/list]
 
 [size=4][b][u]Installation[/u][/b][/size]
@@ -57,13 +55,13 @@ Install with Mod Organizer 2, Vortex, or another FOMOD-capable manager.
 [b]High-End x86-64-v3[/b] is intended for AVX2-class CPUs, broadly AMD Zen 2 or newer and Intel Haswell or newer. It may provide little or no measurable improvement depending on the load order and cosave workload. Selecting it on unsupported hardware can cause an illegal-instruction crash.
 
 [size=4][b][u]Compatibility[/u][/b][/size]
-The plugin is standalone apart from SKSE and a DLL preloader. It does not require NextGen Disk Cache, and NextGen Disk Cache does not require it. Version 1.2.1 or later of NextGen Disk Cache avoids rewriting save-related file flags and is the intended combination.
+The plugin is standalone apart from SKSE (and a DLL preloader on game versions other than 1.6.1170 and 1.7.99). It does not require NextGen Disk Cache, and NextGen Disk Cache does not require it. Version 1.2.1 or later of NextGen Disk Cache avoids rewriting save-related file flags and is the intended combination.
 
 Potential conflicts are limited mainly to other DLL plugins that patch the same SKSE save/load routines.
 
 Binaries are supplied for:
 [list]
-[*]Skyrim AE 1.6.1170, 1.6.1130, 1.6.640, and 1.6.353
+[*]Skyrim AE 1.7.99, 1.6.1170, 1.6.1130, 1.6.640, and 1.6.353
 [*]Skyrim SE 1.5.97
 [*]Skyrim VR 1.4.15
 [*]GOG 1.6.1179 and 1.6.659
@@ -88,7 +86,7 @@ The release contains:
 [*]a dependency-free Python verifier for manifests, static imports, and PE-section comparisons.
 [/list]
 
-The 1.5.1 DLLs can be compared against the corresponding 1.5.0 DLLs. The executable [code].text[/code] section should be identical; differences should be confined to release metadata, the sanitized embedded PDB path, version resources, and the PE checksum.
+Use [code]python tools/verify-release-binaries.py compare <old.dll> <new.dll>[/code] to see which PE sections differ between two releases, and [code]manifest[/code] to list the SHA-256 and version of every DLL in an extracted archive.
 
 [size=4][b][u]Credits and license[/u][/b][/size]
 [b]Original author:[/b] Harry Gillanders (just-harry)

@@ -11,7 +11,7 @@ import slack_common.text;
 import slack_common.threading;
 
 
-enum immutable(wchar[]) errorDialogTitle = "Save & Load Accelerator for SKSE Cosaves v1.7.0 Error";
+enum immutable(wchar[]) errorDialogTitle = "Save & Load Accelerator for SKSE Cosaves v1.7.1 Error";
 
 
 /+ The implementation for Skyrim v1.5.97 breaks message-boxes in other versions of Skyrim.

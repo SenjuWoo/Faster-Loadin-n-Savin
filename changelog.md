@@ -1,5 +1,14 @@
 # Faster Loadin and Savin: Changelog
 
+## Version 1.7.1 (2026-11-25)
+
+Metadata fix. No save/load behaviour change from 1.7.0, and no cosave format change.
+
+- **Fixed: the DLL version resource carried a stray `\0`.** The 1.7.0 DLLs report their `FileVersion` and `ProductVersion` strings as the literal text `1.7.0.0\0` (Windows file properties and `tools/verify-release-binaries.py manifest` show it). The version-stamping script wrote `\\0` into the `.rc` file, so `rc.exe` kept a backslash and a zero instead of the string terminator. The script now writes `\0`, and the 1.7.1 DLLs report plain `1.7.1.0`. The numeric `FILEVERSION`, `SKSEPlugin_Version` and `GetReleaseVersion` values were always correct.
+- **Fixed: the build's debug path prefix read `vv1.7.0`.** The same script doubled the `v` in `build.ps1`'s release tag, which only feeds the debug-info source path prefix (not shipped in the DLLs).
+- Version 1.7.1 everywhere: DLL resources, `SKSEPlugin_Version`, error-dialog title, FOMOD, packager default.
+- Repository: the README follows the fork's other project pages (cover image, release proof, install and build sections); the old maintainer account links point at `SenjuWoo`; the Nexus description and install notes are current for 1.7.x (nine game variants, SKSE's builtin preloader on 1.6.1170 and 1.7.99).
+
 ## Version 1.7.0 (2026-08-23)
 
 Rebase onto upstream S.L.A.C.K. 1.3.4 (released 2026-08-22), one day after our 1.6.0.
@@ -55,11 +64,11 @@ The public rename and release-hardening update:
 
 ## Version 1.4.0 (2026-07-18)
 
-The fourteenth release of this plugin, and the first from the maintenance fork at [ShugokiFable/Faster-Loadin-n-Savin](https://github.com/SenjuWoo/Faster-Loadin-n-Savin). The changes are as follows:
+The fourteenth release of this plugin, and the first from the maintenance fork at [SenjuWoo/Faster-Loadin-n-Savin](https://github.com/SenjuWoo/Faster-Loadin-n-Savin). The changes are as follows:
 - **Crash-safe cosave saving.** The cosave is now written to a sibling `.tmp` file first, and the previous cosave is only replaced—atomically, with write-through—after the new cosave has been written in full. Previously, saving began by truncating the existing cosave, so a crash, forced exit, or plugin error mid-save destroyed the last good cosave. Applies to both serial and experimental parallel saving.
 - **Faster, simpler cosave loading.** Loading now uses buffered, sequential reads of exactly the cosave's length, letting the Windows page cache and read-ahead do their job. The read-only handle no longer requests write-through (which was meaningless there) nor unbuffered I/O (which forced padded, over-long reads).
 - **A latent buffer-commit inconsistency on the save and load paths has been made structurally impossible**: the padded write now always fits in committed memory, and the buffer's growth size is the size actually used.
-- **Compatibility with [NextGen Disk Cache](https://github.com/ShugokiFable/NextGen-Disk-Cache).** Together with its 1.2.1 release—which leaves the flags of `.skse`/`.cosave`/`.ess`/`.bak` files untouched—S.L.A.C.K.'s deliberate unbuffered, write-through cosave I/O is no longer rewritten by file-cache hooks. (With any other configuration the plugin remains correct, merely less direct.)
+- **Compatibility with [NextGen Disk Cache](https://github.com/SenjuWoo/NextGen-Disk-Cache).** Together with its 1.2.1 release—which leaves the flags of `.skse`/`.cosave`/`.ess`/`.bak` files untouched—S.L.A.C.K.'s deliberate unbuffered, write-through cosave I/O is no longer rewritten by file-cache hooks. (With any other configuration the plugin remains correct, merely less direct.)
 - **Two runtime builds are now provided.** Universal x86-64-v2 (the FOMOD default) is used for broad CPU compatibility; the optional High-End build targets the x86-64-v3 microarchitecture level (AVX2-class: AMD Zen 2 and later—including X3D parts—and Intel Haswell and later) with full optimisation; a Universal x86-64-v2 build for older CPUs is included in the archive for manual installation. Modern hardware—large X3D cache, DDR5, NVMe with onboard DRAM—benefits the existing parsing, copying, and callback workload without any artificial "modes".
 - **Release engineering.** The build script now accepts MSVC's `cl.exe` and `link.exe` as substitutes for clang++ and lld-link, checks every tool's exit code, and supports side-by-side CPU-profile build directories. Public archives no longer contain PDB files; symbols remain available as a separate developer artifact.
 - Parallel saving remains disabled by default: it runs third-party SKSE plugin callbacks concurrently, and those callbacks cannot be assumed thread-safe. No amount of modern hardware changes that.

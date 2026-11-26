@@ -1,4 +1,4 @@
-Faster Loadin and Savin 1.5.1 - installation notes
+Faster Loadin and Savin 1.7.1 - installation notes
 
 RECOMMENDED INSTALL
 1. Install with Mod Organizer 2, Vortex, or another FOMOD-capable manager.

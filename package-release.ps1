@@ -3,7 +3,7 @@
 [CmdletBinding()]
 Param (
     [Parameter()]
-    [Version] $Version = [Version]'1.7.0',
+    [Version] $Version = [Version]'1.7.1',
 
     [Parameter()]
     [Switch] $SkipBuild

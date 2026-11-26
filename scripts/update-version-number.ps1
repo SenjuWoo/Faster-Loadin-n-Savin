@@ -31,7 +31,9 @@ Update-TextFile 'mod/slack_common/user_interface.d' {
 Update-TextFile 'mod/slack_mod/Save&LoadAcceleratorForSKSECosaves.rc' {
     Param($Text)
     $Text = [regex]::Replace($Text, '(?m)^(\s*(?:FILE|PRODUCT)VERSION\s+)\S+', "`${1}$AsRCLiteral")
-    [regex]::Replace($Text, '(VALUE "(?:File|Product)Version", ")[^"]+', "`${1}$AsRCString\\0")
+    # PowerShell does not unescape backslashes, so "\0" writes the two characters \0, which rc.exe turns into the
+    # terminating NUL. "\\0" (1.7.0) wrote \\0, and the DLLs carried the literal text "1.7.0.0\0".
+    [regex]::Replace($Text, '(VALUE "(?:File|Product)Version", ")[^"]+', "`${1}$AsRCString\0")
 }
 
 Update-TextFile 'mod/fomod/info.xml' {
@@ -48,7 +50,8 @@ Update-TextFile 'mod/slack_mod/entrypoint.d' {
 
 Update-TextFile 'build.ps1' {
     Param($Text)
-    [regex]::Replace($Text, "(<#release-version#>'v)[^']+", ('$1v' + $AsSemantic))
+    # Group 1 already ends in 'v'; '${1}' (not '$1v' + ...) avoids the doubled 'vv1.7.0' tag and a $11 group reference.
+    [regex]::Replace($Text, "(<#release-version#>'v)[^']+", ('${1}' + $AsSemantic))
 }
 
 Write-Host "Updated source metadata to $AsRCString"
