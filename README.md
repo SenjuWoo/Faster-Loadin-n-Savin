@@ -39,7 +39,9 @@ compiled plugin expects those names.
 cosave size, storage, CPU and the installed SKSE plugins, and the plugin speeds up only the SKSE
 cosave part of a save.*
 
-![Terminal: gh release download fetches the published archive; the SHA-256 sidecar matches; verify-release-binaries manifest lists all 18 DLLs (nine game builds, two CPU profiles) with their version resource; imports shows the ae1170 DLL's static imports and flags no networking, process-creation, remote-write or persistence APIs](docs/presentation/screenshot-verify.png)
+![Terminal: gh release download fetches the published 1.7.1 archive; certutil and the .sha256 sidecar give the same hash; verify-release-binaries compare on the ae1170 DLL shows FileVersion 1.7.0.0\0 in 1.7.0 and 1.7.1.0 in 1.7.1, with 360 differing bytes: 29 in .rdata, 321 in .rsrc, 1 in .text, the checksum and padding; imports finds 6 modules and 35 symbols and no flagged networking, process-creation, remote-write or persistence APIs](docs/presentation/screenshot-verify.png)
+
+*1.7.1 against 1.7.0, both downloaded from the releases page. Besides the version resource and strings, one `.text` byte differs, which matches the version constant that `GetReleaseVersion` returns; the tool reports any `.text` change as code.*
 
 ## Safety scope
 

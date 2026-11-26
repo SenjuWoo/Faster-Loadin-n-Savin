@@ -4,6 +4,20 @@ This project ships a native SKSE DLL. Release verification should combine source
 
 The tools in this repository use only Python's standard library.
 
+## What 1.7.1 is
+
+Version 1.7.1 fixes the DLL version resource (1.7.0 carried the literal text `1.7.0.0\0`) and restamps the version; the
+save/load implementation is unchanged from 1.7.0. Comparing the published `ae1170` DLLs of both releases:
+
+```text
+python tools/verify-release-binaries.py compare <1.7.0.dll> <1.7.1.dll>
+```
+
+reports 360 differing bytes: 29 in `.rdata` (version strings, error-dialog title), 321 in `.rsrc` (version resource), 1 in
+`.text`, 3 in `OptionalHeader.CheckSum` and 6 in header padding. The single `.text` byte matches the release-version
+constant `0x01_07_001_0` returned by `GetReleaseVersion`. Because `.text` differs, the tool prints "EXECUTABLE CODE
+DIFFERS"; that is the expected result for a version bump of this code base.
+
 ## What 1.5.1 is
 
 Version 1.5.1 contains no save/load implementation changes from 1.4.0 or 1.5.0. It corrects the installer, packaging scripts, documentation, licensing guidance, and release validation. The sixteen DLLs are version-stamped `1.5.1.0`.
